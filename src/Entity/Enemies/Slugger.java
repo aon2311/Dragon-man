@@ -64,7 +64,7 @@ public class Slugger extends Enemy {
 	
 	private void getNextPosition() {
 		
-		// movement
+		
 		if(left) {
 			dx -= moveSpeed;
 			if(dx < -maxSpeed) {
@@ -78,7 +78,7 @@ public class Slugger extends Enemy {
 			}
 		}
 		
-		// falling
+		
 		if(falling) {
 			dy += fallSpeed;
 		}
@@ -87,12 +87,12 @@ public class Slugger extends Enemy {
 	
 	public void update() {
 		
-		// update position
+		
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 		
-		// check flinching
+		
 		if(flinching) {
 			long elapsed =
 				(System.nanoTime() - flinchTimer) / 1000000;
@@ -101,7 +101,7 @@ public class Slugger extends Enemy {
 			}
 		}
 		
-		// if it hits a wall, go other direction
+		
 		if(right && dx == 0) {
 			right = false;
 			left = true;
@@ -113,14 +113,14 @@ public class Slugger extends Enemy {
 			facingRight = true;
 		}
 		
-		// update animation
+		
 		animation.update();
 		
 	}
 	
 	public void draw(Graphics2D g) {
 		
-		//if(notOnScreen()) return;
+		
 		
 		setMapPosition();
 		

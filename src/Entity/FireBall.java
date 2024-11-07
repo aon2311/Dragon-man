@@ -78,17 +78,22 @@ public class FireBall extends MapObject {
 	
 	public boolean shouldRemove() { return remove; }
 	
+	
 	public void update() {
 		
 		checkTileMapCollision();
+		
 		setPosition(xtemp, ytemp);
 		
+		 
 		if(dx == 0 && !hit) {
 			setHit();
 		}
 		
 		animation.update();
+		
 		if(hit && animation.hasPlayedOnce()) {
+			 
 			remove = true;
 		}
 		

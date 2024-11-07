@@ -26,15 +26,20 @@ public class Animation {
 	public void setDelay(long d) { delay = d; }
 	public void setFrame(int i) { currentFrame = i; }
 	
+	
 	public void update() {
 		
 		if(delay == -1) return;
 		
+		
 		long elapsed = (System.nanoTime() - startTime) / 1000000;
+		
+		
 		if(elapsed > delay) {
 			currentFrame++;
 			startTime = System.nanoTime();
 		}
+		
 		if(currentFrame == frames.length) {
 			currentFrame = 0;
 			playedOnce = true;

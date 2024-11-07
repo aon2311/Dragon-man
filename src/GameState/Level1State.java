@@ -24,7 +24,7 @@ public class Level1State extends GameState {
     
     private AudioPlayer bgMusic;
     
-    private boolean gameWon = false; // ตัวแปรเช็คว่าชนะหรือไม่
+    private boolean gameWon = false; 
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -73,20 +73,20 @@ public class Level1State extends GameState {
     }
     
     public void update() {
-        // update player
+        
         player.update();
         tileMap.setPosition(
             GamePanel.WIDTH / 2 - player.getx(),
             GamePanel.HEIGHT / 2 - player.gety()
         );
 
-        // set background
+        
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
-        // attack enemies
+        
         player.checkAttack(enemies);
 
-        // update all enemies
+        
         for (int i = 0; i < enemies.size(); i++) {
             Enemy e = enemies.get(i);
             e.update();
@@ -97,13 +97,13 @@ public class Level1State extends GameState {
             }
         }
 
-        // win x = 2570
+        
         if (!gameWon && player.getx() >= 2570) {
             gameWon = true; 
-            System.out.println("Player has won!"); // Debugging line
+            System.out.println("Player has won!"); 
         }
 
-        // update explosions
+        
         for (int i = 0; i < explosions.size(); i++) {
             explosions.get(i).update();
             if (explosions.get(i).shouldRemove()) {
@@ -114,30 +114,30 @@ public class Level1State extends GameState {
     }
     
     public void draw(Graphics2D g) {
-        // draw bg
+        
         bg.draw(g);
         
-        // draw tilemap
+        
         tileMap.draw(g);
         
-        // draw player
+        
         player.draw(g);
         
-        // draw enemies
+        
         for (Enemy enemy : enemies) {
             enemy.draw(g);
         }
         
-        // draw explosions
+        
         for (Explosion explosion : explosions) {
             explosion.setMapPosition((int)tileMap.getx(), (int)tileMap.gety());
             explosion.draw(g);
         }
         
-        // draw hud
+        
         hud.draw(g);
         
-     // show "dragon winner"
+    
         if (gameWon) {
             g.setColor(new Color(139, 69, 19));
             g.setFont(new Font("Arial", Font.BOLD, 28));
@@ -151,6 +151,7 @@ public class Level1State extends GameState {
             g.drawString(message, x, y);
         }
     }
+    
     
     public void keyPressed(int k) {
         if (k == KeyEvent.VK_LEFT) player.setLeft(true);

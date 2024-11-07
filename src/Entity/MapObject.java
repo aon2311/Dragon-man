@@ -8,23 +8,23 @@ import java.awt.Rectangle;
 
 public abstract class MapObject {
 	
-	// tile stuff
+	// tile 
 	protected TileMap tileMap;
 	protected int tileSize;
 	protected double xmap;
 	protected double ymap;
 	
-	// position and vector
+	// position and vector obj
 	protected double x;
 	protected double y;
 	protected double dx;
 	protected double dy;
 	
-	// dimensions
+	// w h object 
 	protected int width;
 	protected int height;
 	
-	// collision box
+	// w h of  box chon
 	protected int cwidth;
 	protected int cheight;
 	
@@ -35,12 +35,13 @@ public abstract class MapObject {
 	protected double ydest;
 	protected double xtemp;
 	protected double ytemp;
+	//check 4mum chon obj
 	protected boolean topLeft;
 	protected boolean topRight;
 	protected boolean bottomLeft;
 	protected boolean bottomRight;
 	
-	// animation
+	// animation  
 	protected Animation animation;
 	protected int currentAction;
 	protected int previousAction;
@@ -63,12 +64,13 @@ public abstract class MapObject {
 	protected double jumpStart;
 	protected double stopJumpSpeed;
 	
-	// constructor
+	
 	public MapObject(TileMap tm) {
 		tileMap = tm;
 		tileSize = tm.getTileSize(); 
 	}
 	
+	 
 	public boolean intersects(MapObject o) {
 		Rectangle r1 = getRectangle();
 		Rectangle r2 = o.getRectangle();
@@ -103,6 +105,7 @@ public abstract class MapObject {
 		
 	}
 	
+	
 	public void checkTileMapCollision() {
 		
 		currCol = (int)x / tileSize;
@@ -113,7 +116,7 @@ public abstract class MapObject {
 		
 		xtemp = x;
 		ytemp = y;
-		
+		// gan y (jum or fall)
 		calculateCorners(x, ydest);
 		if(dy < 0) {
 			if(topLeft || topRight) {
@@ -135,6 +138,7 @@ public abstract class MapObject {
 			}
 		}
 		
+		// gan x
 		calculateCorners(xdest, y);
 		if(dx < 0) {
 			if(topLeft || bottomLeft) {
@@ -154,7 +158,7 @@ public abstract class MapObject {
 				xtemp += dx;
 			}
 		}
-		
+		// fall?
 		if(!falling) {
 			calculateCorners(x, ydest + 1);
 			if(!bottomLeft && !bottomRight) {
